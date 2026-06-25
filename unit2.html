@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Styling Reference Guide</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+    h2 {
+      color: #2980b9;
+      margin-top: 25px;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 12px;
+      padding-left: 15px;
+      border-left: 3px solid #3498db;
+    }
+    code {
+      background-color: #f8f9fa;
+      color: #e83e8c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.95em;
+    }
+    strong {
+      color: #111;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>CSS Styling (Background, Text, Fonts)</h1>
+
+    <h2>Background Properties</h2>
+    <ul>
+      <li><code>background-color</code>: Sets solid colors using color names, HEX, RGB, or HSL.</li>
+      <li><code>background-image</code>: Embeds an image file using <code>url('image.jpg')</code>.</li>
+      <li><code>background-repeat</code>: Prevents or allows tiling (<code>repeat</code>, <code>no-repeat</code>, <code>repeat-x</code>).</li>
+      <li><code>background-position</code>: Aligns background graphic locations (<code>center</code>, <code>top right</code>).</li>
+    </ul>
+
+    <h2>Text Formatting</h2>
+    <ul>
+      <li><code>color</code>: Controls foreground text colors.</li>
+      <li><code>text-align</code>: Sets horizontal alignment (<code>left</code>, <code>right</code>, <code>center</code>, <code>justify</code>).</li>
+      <li><code>text-decoration</code>: Attaches or removes lines (<code>none</code>, <code>underline</code>, <code>line-through</code>).</li>
+      <li><code>text-transform</code>: Forces case conversions (<code>uppercase</code>, <code>lowercase</code>, <code>capitalize</code>).</li>
+      <li><code>letter-spacing / word-spacing</code>: Adjusts text spacing intervals.</li>
+    </ul>
+
+    <h2>Controlling Fonts</h2>
+    <ul>
+      <li><code>font-family</code>: Establishes font choice with fallback stacks.</li>
+      <li><code>font-size</code>: Defines scale (<code>px</code>, <code>em</code>, <code>rem</code>, <code>%</code>).</li>
+      <li><code>font-style</code>: Toggles slant variations (<code>normal</code>, <code>italic</code>).</li>
+      <li><code>font-weight</code>: Adjusts structural boldness (<code>normal</code>, <code>bold</code>, <code>100-900</code>).</li>
+    </ul>
+  </div>
+
+</body>
+</html>
