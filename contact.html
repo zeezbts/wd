@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Zeez | Education with Zeez 143</title>
+    <!-- Premium Fonts Framework -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Shared Platform Tokens */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+            --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+            --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        /* Professional Card Frame */
+        .contact-card {
+            background: var(--bg-surface);
+            max-width: 340px;
+            width: 100%;
+            padding: 35px 30px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: var(--transition-bounce);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.08);
+        }
+
+        /* Icon Framework */
+        .insta-logo-container {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-bounce);
+        }
+
+        .contact-card:hover .insta-logo-container {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .insta-logo-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Identity Typography */
+        .insta-id {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .insta-subtitle {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        /* Premium Brand CTA Button Layout */
+        .insta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px 30px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: -0.2px;
+            transition: var(--transition-bounce);
+            border: none;
+            box-shadow: 0 4px 14px rgba(220, 39, 67, 0.25);
+        }
+
+        .insta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 39, 67, 0.4);
+            color: white;
+        }
+
+        .insta-btn:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<div class="contact-card">
+    <!-- Instagram Icon: High-Fidelity Vector Embedding -->
+    <div class="insta-logo-container">
+        <svg class="insta-logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+            <radialGradient id="insta-grad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" transform="translate(12 12) rotate(45) scale(16.9706)">
+                <stop offset="0" stop-color="#f09433"/>
+                <stop offset="0.25" stop-color="#e6683c"/>
+                <stop offset="0.5" stop-color="#dc2743"/>
+                <stop offset="0.75" stop-color="#cc2366"/>
+                <stop offset="1" stop-color="#bc1888"/>
+            </radialGradient>
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" fill="url(#insta-grad)"/>
+        </svg>
+    </div>
+    
+    <span class="insta-id">@z___e_e___z</span>
+    <span class="insta-subtitle">Official Learning Channel</span>
+    
+    <a href="https://www.instagram.com/z___e_e___z?igsh=ZnlkczZ5Y25mbWll" class="insta-btn" target="_blank" rel="noopener">
+        Follow Channel
+    </a>
+</div>
+
+</body>
+</html>

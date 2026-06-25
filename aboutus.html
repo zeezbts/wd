@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Alagappa University C Programming Portal</title>
+    <!-- Premium Google Fonts Framework & Developer Icons -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        /* Shared Framework Design Tokens */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --brand-primary: #3b82f6;
+            --brand-hover: #1d4ed8;
+            --brand-light: #eff6ff;
+            --border-color: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow-lg: 0 20px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Core Structure Resets */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 90vh;
+        }
+
+        /* Professional Showcase Profile Container Layout */
+        .about-card {
+            background: var(--bg-surface);
+            max-width: 750px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 45px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .about-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 35px -5px rgba(15, 23, 42, 0.08);
+        }
+
+        /* Subtle Accent Structural Frame Decorator */
+        .about-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--brand-primary), #60a5fa);
+        }
+
+        /* Hero Text Area Layout Blocks */
+        .welcome-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .welcome-header h1 {
+            color: var(--text-main);
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .welcome-header h1 span {
+            color: var(--brand-primary);
+        }
+
+        /* Content Text Modules Layout Styles */
+        .lang-box {
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            color: var(--text-main);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--brand-primary);
+            font-size: 1.3rem;
+        }
+
+        .lang-box p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            text-align: left;
+            margin: 15px 0;
+        }
+
+        /* High-Visibility Custom Highlights Framework */
+        .highlight {
+            color: var(--brand-primary);
+            background-color: var(--brand-light);
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            transition: var(--transition-smooth);
+        }
+
+        .highlight:hover {
+            background-color: var(--brand-primary);
+            color: white;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: var(--border-color);
+            margin: 30px 0;
+        }
+
+        /* Mobile Layout Adaptive Media Rules */
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 30px 15px;
+            }
+            .about-card {
+                padding: 30px 20px;
+            }
+            .welcome-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="about-card">
+    <!-- Hero Portal Heading Context -->
+    <header class="welcome-header">
+        <h1>Welcome to <span>ZEEZ</span></h1>
+    </header>
+
+    <!-- Main Text Presentation Node -->
+    <main class="lang-box">
+        <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Course Overview</h2>
+        <p>
+            This portal is specifically created for the <span class="highlight">1st Year C Programming Subject</span> under the 
+            <span class="highlight">Alagappa University</span> curriculum.
+        </p>
+    </main>
+
+    <hr>
+</div>
+
+</body>
+</html>

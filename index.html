@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education With Zee | Alagappa University Learning Hub</title>
+    <!-- Premium Fonts & Icons -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        /* Design Tokens (CSS Variables) */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-navbar: rgba(15, 23, 42, 0.95);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --text-inverse: #f8fafc;
+            --brand-primary: #3b82f6;
+            --brand-hover: #1d4ed8;
+            --brand-light: #eff6ff;
+            --border-color: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.05);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Core Reset & Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Pro Sticky Navbar with Glassmorphism */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-navbar);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0 2rem;
+            height: 72px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-inverse);
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-brand i {
+            color: var(--brand-primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            height: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            position: relative;
+        }
+
+        .nav-link, .dropbtn {
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 0 1.25rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            height: 100%;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover, .dropdown:hover .dropbtn, .nav-item.active .nav-link {
+            color: var(--text-inverse);
+        }
+
+        /* Pro Dropdowns Layout */
+        .dropdown-panel {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--bg-surface);
+            min-width: 240px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            padding: 0.5rem 0;
+        }
+
+        .dropdown-panel a {
+            color: var(--text-muted);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .dropdown-panel a:hover {
+            background-color: var(--brand-light);
+            color: var(--brand-primary);
+        }
+
+        .dropdown:hover .dropdown-panel {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropbtn i {
+            font-size: 0.75rem;
+            transition: var(--transition-smooth);
+        }
+
+        .dropdown:hover .dropbtn i {
+            transform: rotate(180deg);
+        }
+
+        /* Responsive Mobile Architecture Menu Toggle */
+        #menu-toggle {
+            display: none;
+        }
+
+        .menu-trigger {
+            display: none;
+            color: var(--text-inverse);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Structural Layout Layout */
+        .app-container {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--text-main);
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 span {
+            color: var(--brand-primary);
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        /* Card Component Layout Upgrade */
+        .media-wrapper {
+            position: relative;
+            border-radius: var(--radius-lg);
+            background: var(--bg-surface);
+            padding: 1rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+
+        .media-wrapper:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .pro-card {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            display: block;
+        }
+
+        /* Course Presentation & Call to Action (CTA) */
+        .course-section {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .university-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--brand-light);
+            color: var(--brand-primary);
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .course-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .action-box {
+            margin-top: 1rem;
+        }
+
+        .view-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--brand-primary);
+            color: white;
+            padding: 0.85rem 2.25rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+        }
+
+        .view-btn:hover {
+            background-color: var(--brand-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .view-btn i {
+            transition: var(--transition-smooth);
+        }
+
+        .view-btn:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Adaptive Mobile Breakpoints Layout */
+        @media screen and (max-width: 992px) {
+            .app-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                margin: 2rem auto;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+/* Container that splits your text on the left and logo on the right */
+.app-container {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Splitting the layout columns */
+    gap: 4rem;
+    align-items: center;
+}
+
+/* The card container wrapping your logo image */
+.media-wrapper {
+    position: relative;
+    border-radius: 16px;
+    background: #ffffff;
+    padding: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Responsive styles to make your logo stretch and scale beautifully */
+.pro-card {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3; /* Keeps the standard image box proportion */
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+/* On mobile viewports, stack the logo directly under the text */
+@media screen and (max-width: 992px) {
+    .app-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
+        
+</style>
+</head>
+<body>
+  
+<nav class="navbar">
+    
+    <!-- Header Menu Nodes -->
+    <ul class="nav-menu">
+        <li class="nav-item active"><a href="home.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        <li class="nav-item"><a href="aboutus.html" class="nav-link">About Us</a></li>
+       
+        <!-- Course Units Accordion Item -->
+        <li class="nav-item dropdown">
+            <button class="dropbtn" aria-haspopup="true">Units <i class="fa-solid fa-chevron-down"></i></button>
+            <div class="dropdown-panel">
+                <a href="unit1.html">Unit 1 <i class="fa-solid fa-angle-right"></i></a>
+                <a href="unit2.html">Unit 2 <i class="fa-solid fa-angle-right"></i></a>
+                <a href="unit3.html">Unit 3 <i class="fa-solid fa-angle-right"></i></a>
+                <a href="unit4.html">Unit 4 <i class="fa-solid fa-angle-right"></i></a>
+                <a href="unit5.html">Unit 5 <i class="fa-solid fa-angle-right"></i></a>
+            </div> 
+        </li>
+
+        <!-- External Verifications / Other Portals -->
+        <li class="nav-item dropdown">
+            <button class="dropbtn" aria-haspopup="true">Other Networks <i class="fa-solid fa-chevron-down"></i></button>
+            <div class="dropdown-panel">
+                <a href="https://edu-seven-bay.vercel.app/">C++ PAGE</a>
+                <a href="https://microsem2zeez.vercel.app/">MICROPROCESSOR PAGE</a>
+                <A href="https://htmlsem2zeez.vercel.app/">HTML PAGE</A>
+                <a href="https://digitalsem1zeez.vercel.app/">DIGITAL PAGE</a>
+            </div> 
+        </li>
+    </ul>
+</nav>
+
+
+<main class="app-container">
+    <header class="hero-content">
+        <span class="university-badge">Alagappa University Curriculum</span>
+        <h1>Welcome to <span>Zeez Portal</span></h1>
+       
+        
+        <section class="course-section">
+            <h2 class="course-title">C Programming Language</h2>
+            <div class="action-box">
+                <a href="questions.html" class="view-btn">
+                    View Examination Questions <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+    </header>
+
+    <!-- YOUR LOGO IS LOCATED RIGHT HERE -->
+    <aside class="media-wrapper">
+        <img class="pro-card" src="zeez143.png" alt="Zeez Educational Dashboard Media Preview" width="600" height="450" loading="lazy">
+    </aside>
+</main>
+
+</body>
+</html>
