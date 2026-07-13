@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core JavaScript Reference Guide</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #334155;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+            --accent-color: #f59e0b; /* Yellow/Amber color accent for JavaScript theme */
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        h4 {
+            margin: 10px 0 5px 0;
+            color: #0f172a;
+        }
+
+        ul {
+            margin: 0 0 15px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        .code-box {
+            background-color: #f1f5f9;
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            border-left: 4px solid var(--accent-color);
+            margin-top: 10px;
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>JavaScript Core Syntax Reference</h1>
+
+    <!-- 1. What is JS -->
+    <div class="section-card">
+        <div class="section-title">1. Introduction to JavaScript</div>
+        <ul>
+            <li><strong>Definition:</strong> High-level, single-threaded, dynamic interpreted browser scripting language.</li>
+            <li><strong>Role:</strong> Manages behavioral actions and user runtime interactivity layers on client screens.</li>
+            <li><strong>Execution:</strong> Code compiles and executes directly inside native client engines (e.g., V8).</li>
+        </ul>
+    </div>
+
+    <!-- 2. Variables -->
+    <div class="section-card">
+        <div class="section-title">2. Variables & Scoping Bounds</div>
+        <ul>
+            <li><strong>var:</strong> Legacy variable scope definition keyword. Function-scoped, prone to hoisting issues.</li>
+            <li><strong>let:</strong> Modern block-scoped variable declaration. Values can be safely reassigned over time.</li>
+            <li><strong>const:</strong> Block-scoped read-only constant declaration. Reassignment is strictly prohibited.</li>
+        </ul>
+        <div class="code-box">let itemTotal = 450;
+const conversionRate = 0.82;</div>
+    </div>
+
+    <!-- 3. Functions -->
+    <div class="section-card">
+        <div class="section-title">3. Functional Declarations</div>
+        <ul>
+            <li><strong>Mechanics:</strong> Packaged blocks of logic that accept parameters and run only when explicitly invoked.</li>
+            <li><strong>Return Payload:</strong> Employs explicit <code>return</code> commands to pass calculated data payloads back to callers.</li>
+        </ul>
+        <div class="code-box">function evaluateTax(amount) {
+    return amount * 0.15;
+}</div>
+    </div>
+
+    <!-- 4. Conditionals and Loops -->
+    <div class="section-card">
+        <div class="section-title">4. Conditionals & Repetition Loops</div>
+        <ul>
+            <li><strong>Branching:</strong> Controls logical execution flows using <code>if / else if / else</code> structural blocks.</li>
+            <li><strong>Loops:</strong> Runs a block of code repeatedly using <code>for</code> or <code>while</code> loops as long as a specified condition remains true.</li>
+        </ul>
+        <div class="code-box">// Repetitive execution loop template
+for (let step = 0; step < 5; step++) {
+    console.log("Current Step: " + step);
+}</div>
+    </div>
+
+</div>
+
+</body>
+</html>

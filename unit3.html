@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic HTML & DOM Reference Sheet</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #334155;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --accent: #06b6d4; /* Cyan palette for Dynamic HTML theme */
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--secondary);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .dhtml-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+        }
+
+        ul {
+            margin: 0 0 15px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        .code-panel {
+            background-color: #f1f5f9;
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            border-left: 4px solid var(--accent);
+            margin-top: 10px;
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Dynamic HTML & DOM Specifications</h1>
+
+    <!-- 1. DOM Architecture -->
+    <div class="dhtml-card">
+        <div class="card-title">1. Document Object Model Architecture</div>
+        <ul>
+            <li><strong>Core Strategy:</strong> Converts structural raw HTML tags into a live object-oriented tree.</li>
+            <li><strong>Node Types:</strong> Organizes data using Document, Element, Attribute, and Text node classifications.</li>
+            <li><strong>State Manipulation:</strong> Serves as the programming bridge allowing language engines to alter layouts in real-time.</li>
+        </ul>
+    </div>
+
+    <!-- 2. Content & Styles -->
+    <div class="dhtml-card">
+        <div class="card-title">2. Programmatic Access & Styles</div>
+        <ul>
+            <li><strong>Query Routing:</strong> Employs <code>getElementById</code> or <code>querySelectorAll</code> to locate node objects.</li>
+            <li><strong>Style Rules:</strong> Updates layout presentation properties using camelCase naming variables inside the <code>.style</code> wrapper.</li>
+            <li><strong>Class Handling:</strong> Toggles visibility states cleanly using <code>element.classList</code> commands.</li>
+        </ul>
+        <div class="code-panel">// Dynamic style configuration sample
+const leaf = document.getElementById("title-node");
+leaf.style.fontSize = "24px";
+leaf.classList.add("highlight-frame");</div>
+    </div>
+
+    <!-- 3. Event Bubbling -->
+    <div class="dhtml-card">
+        <div class="card-title">3. Event Propagation Model (Bubbling)</div>
+        <ul>
+            <li><strong>Mechanism:</strong> Interaction events bubble upward through parent nodes after triggering on child nodes.</li>
+            <li><strong>Isolation:</strong> Uses <code>event.stopPropagation()</code> to prevent events from bubbling up to higher layouts.</li>
+            <li><strong>Delegation:</strong> Attaches a single listener to a parent element to handle events from multiple children, saving memory.</li>
+        </ul>
+        <div class="code-panel">// Halting the bubbling cascade path
+element.addEventListener("click", (event) => {
+    event.stopPropagation(); 
+});</div>
+    </div>
+
+    <!-- 4. Data Binding -->
+    <div class="dhtml-card">
+        <div class="card-title">4. Real-Time Data Binding Models</div>
+        <ul>
+            <li><strong>One-Way Sync:</strong> Unidirectional data flow. Variable updates refresh UI views automatically.</li>
+            <li><strong>Two-Way Sync:</strong> Bidirectional flow. UI inputs and data variables update each other in real-time.</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
