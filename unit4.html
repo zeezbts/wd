@@ -120,22 +120,203 @@ const conversionRate = 0.82;</div>
         <div class="code-box">function evaluateTax(amount) {
     return amount * 0.15;
 }</div>
-    </div>
+    
 
     <!-- 4. Conditionals and Loops -->
     <div class="section-card">
         <div class="section-title">4. Conditionals & Repetition Loops</div>
-        <ul>
-            <li><strong>Branching:</strong> Controls logical execution flows using <code>if / else if / else</code> structural blocks.</li>
-            <li><strong>Loops:</strong> Runs a block of code repeatedly using <code>for</code> or <code>while</code> loops as long as a specified condition remains true.</li>
-        </ul>
-        <div class="code-box">// Repetitive execution loop template
-for (let step = 0; step < 5; step++) {
-    console.log("Current Step: " + step);
-}</div>
+        
+    <h2>1. Conditional Statements</h2>
+    
+    <h2>JavaScript Conditionals</h2>
+    <ul>
+        <li>
+            <strong>if Statement:</strong> A basic decision structure that executes a block of code only if its specified condition evaluates to true.
+            <p><strong>Syntax:</strong></p>
+<pre><code>if (condition) {
+  // Code runs if condition is true
+}</code></pre>
+            <p><strong>Example:</strong></p>
+<pre><code>let age = 20;
+if (age >= 18) {
+  console.log("Allowed to vote");
+}</code></pre>
+        </li>
+
+        <li>
+            <strong>else Statement:</strong> Paired with an if statement to provide a fallback code block that runs only when the initial condition is false.
+            <p><strong>Syntax:</strong></p>
+<pre><code>if (condition) {
+  // Runs if condition is true
+} else {
+  // Runs if condition is false
+}</code></pre>
+            <p><strong>Example:</strong></p>
+<pre><code>let score = 45;
+if (score >= 50) {
+  console.log("Passed");
+} else {
+  console.log("Failed");
+}</code></pre>
+        </li>
+
+        <li>
+            <strong>else if Statement:</strong> Evaluates a new condition if the preceding condition evaluates to false, allowing multiple sequential checks.
+            <p><strong>Syntax:</strong></p>
+<pre><code>if (condition1) {
+  // Runs if condition1 is true
+} else if (condition2) {
+  // Runs if condition1 is false and condition2 is true
+}</code></pre>
+            <p><strong>Example:</strong></p>
+<pre><code>let speed = 75;
+if (speed > 80) {
+  console.log("Too fast");
+} else if (speed > 60) {
+  console.log("Normal speed");
+}</code></pre>
+        </li>
+
+        <li>
+            <strong>if-else-if Ladder:</strong> A chained series of else if statements used to evaluate multiple mutually exclusive conditions in a top-down order.
+            <p><strong>Syntax:</strong></p>
+<pre><code>if (condition1) {
+  // Code block 1
+} else if (condition2) {
+  // Code block 2
+} else if (condition3) {
+  // Code block 3
+} else {
+  // Default code block
+}</code></pre>
+            <p><strong>Example:</strong></p>
+<pre><code>let marks = 85;
+if (marks >= 90) {
+  console.log("Grade A");
+} else if (marks >= 80) {
+  console.log("Grade B");
+} else if (marks >= 70) {
+  console.log("Grade C");
+} else {
+  console.log("Grade D");
+}</code></pre>
+        </li>
+
+        <li>
+            <strong>Nested if Statement:</strong> An if statement placed inside another if statement, used to test secondary conditions only after a primary condition is met.
+            <p><strong>Syntax:</strong></p>
+<pre><code>if (outerCondition) {
+  if (innerCondition) {
+    // Runs only if both conditions are true
+  }
+}</code></pre>
+            <p><strong>Example:</strong></p>
+<pre><code>let hasAccount = true;
+let balance = 150;
+if (hasAccount) {
+  if (balance > 100) {
+    console.log("Transaction approved");
+  }
+}</code></pre>
+        </li>
+
+        <li>
+            <strong>switch Statement:</strong> A multi-way branch structure that compares a single expression value against predefined case labels using strict equality.
+            <p><strong>Syntax:</strong></p>
+<pre><code>switch (expression) {
+  case value1:
+    // Code block
+    break;
+  case value2:
+    // Code block
+    break;
+  default:
+    // Fallback code block
+}</code></pre>
+            <p><strong>Example:</strong></p>
+<pre><code>let day = 2;
+switch (day) {
+  case 1:
+    console.log("Monday");
+    break;
+  case 2:
+    console.log("Tuesday");
+    break;
+  default:
+    console.log("Weekend or invalid day");
+}</code></pre>
+        </li>
+    </ul>
+
+
+    <h2>2. Repetition Loops</h2>
+   <h2>Repetition Loops Definitions, Syntax, and Examples</h2>
+    <ul>
+        <li>
+            <strong>for Loop:</strong> A counting loop that packs counter setup, condition check, and step modification into a single control line.
+            <p><strong>Syntax:</strong></p>
+<pre><code>for (initialization; condition; final-expression) {
+  // Code block to repeat
+}</code></pre>
+            <p><strong>Example:</strong></p>
+<pre><code>for (let i = 1; i <= 3; i++) {
+  console.log("Count: " + i);
+}</code></pre>
+        </li>
+
+        <li>
+            <strong>while Loop:</strong> An entry-controlled structure that repeats a statement block as long as its condition remains true.
+            <p><strong>Syntax:</strong></p>
+<pre><code>while (condition) {
+  // Code block
+}</code></pre>
+            <p><strong>Example:</strong></p>
+<pre><code>let energy = 2;
+while (energy > 0) {
+  console.log("Running...");
+  energy--;
+}</code></pre>
+        </li>
+
+        <li>
+            <strong>do...while Loop:</strong> An exit-controlled loop that processes the statement block once before evaluating the condition.
+            <p><strong>Syntax:</strong></p>
+<pre><code>do {
+  // Code block
+} while (condition);</code></pre>
+            <p><strong>Example:</strong></p>
+<pre><code>let attempts = 0;
+do {
+  console.log("Checking...");
+} while (attempts > 0);</code></pre>
+        </li>
+
+        <li>
+            <strong>for...of Loop:</strong> A collection iterator that extracts values directly from iterable sequences like arrays or strings.
+            <p><strong>Syntax:</strong></p>
+<pre><code>for (const value of iterable) {
+  // Code block
+}</code></pre>
+            <p><strong>Example:</strong></p>
+<pre><code>const colors = ["red", "blue"];
+for (const color of colors) {
+  console.log(color);
+}</code></pre>
+        </li>
+
+        <li>
+            <strong>for...in Loop:</strong> A key investigator loop that traverses the enumerable string property keys of an object.
+            <p><strong>Syntax:</strong></p>
+<pre><code>for (const key in object) {
+  // Code block
+}</code></pre>
+            <p><strong>Example:</strong></p>
+<pre><code>const user = { name: "Alex", age: 25 };
+for (const key in user) {
+  console.log(key + ": " + user[key]);
+}</code></pre>
+        </li>
+    </ul>
     </div>
-
-</div>
-
-</body>
-</html>
+    </div>
+</div></body></html>
