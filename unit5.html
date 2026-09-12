@@ -3,179 +3,777 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced JavaScript Architecture & Operations</title>
+    <title>Unit IV & V: JavaScript Study Guide</title>
     <style>
-        :root {
-            --primary-color: #0f172a;
-            --secondary-color: #1e293b;
-            --bg-color: #f8fafc;
-            --text-color: #334155;
-            --accent-color: #3b82f6; /* Modern Blue accent color theme */
-            --border-color: #cbd5e1;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 20px;
-            scroll-behavior: smooth;
+            display: flex;
+            background-color: #f4f6f9;
+            color: #333;
         }
 
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            background: #ffffff;
+        /* Sidebar Navigation */
+        nav {
+            width: 280px;
+            height: 100vh;
+            background-color: #1e293b;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px 10px;
+            overflow-y: auto;
+        }
+
+        nav h2 {
+            color: #f8fafc;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid #38bdf8;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li a {
+            display: block;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #334155;
+            color: #f8fafc;
+        }
+
+        /* Main Content Area */
+        main {
+            margin-left: 280px;
             padding: 40px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        header {
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            color: #0f172a;
+            font-size: 2.2rem;
+        }
+
+        header p {
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        section {
+            background: #ffffff;
+            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            scroll-margin-top: 20px;
         }
 
-        h1 {
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 10px;
-            margin-top: 0;
+        section h2 {
+            color: #1e3a8a;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
         }
 
-        h2 {
-            color: var(--secondary-color);
-            margin-top: 35px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 5px;
-        }
-
-        h3 {
-            color: var(--secondary-color);
-            font-size: 1.1rem;
-            margin-top: 25px;
+        section h3 {
+            color: #2563eb;
+            font-size: 1.2rem;
+            margin: 20px 0 10px 0;
         }
 
         p {
-            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #475569;
         }
 
-        ul, ol {
-            margin-bottom: 1.5rem;
-            padding-left: 20px;
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: #475569;
         }
 
         li {
-            margin-bottom: 0.5rem;
-        }
-
-        .toc-box {
-            background-color: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 20px;
-            margin: 25px 0;
-        }
-
-        .toc-title {
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .toc-box ul {
-            list-style-type: none;
-            padding-left: 0;
-            margin-bottom: 0;
-        }
-
-        .toc-box li {
             margin-bottom: 8px;
         }
 
-        .toc-box li a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .toc-box li a:hover {
-            text-decoration: underline;
-        }
-
-        .code-panel {
-            background-color: #f1f5f9;
-            border-left: 4px solid var(--accent-color);
+        /* Code Blocks */
+        pre {
+            
             padding: 15px;
-            border-radius: 0 4px 4px 0;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 0.9em;
-            margin-bottom: 1.5rem;
-            white-space: pre-wrap;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            margin: 10px 0 15px 0;
+            
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #e2e8f0;
             color: #0f172a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+   
+    <!-- Main Content -->
+    <main>
+        <!-- Section 2 -->
+        <section id="objects">
+            <h2>2. JavaScript Objects</h2>
+            <p>An object stores data in the form of key-value pairs.</p>
+<pre><code>let student = {
+    name: "Anita",
+    age: 21,
+    course: "JavaScript"
+};</code></pre>
+            <p>Here, <code>name</code>, <code>age</code>, and <code>course</code> are properties, while <code>"Anita"</code>, <code>21</code>, and <code>"JavaScript"</code> are property values.</p>
 
-    <h1>Advanced Client-Side Scripting Modules</h1>
-    
-    <nav class="toc-box">
-        <div class="toc-title">Table of Contents</div>
-        <ul>
-            <li><a href="#js-runtime">1. JavaScript Engine & Concurrency Engine</a></li>
-            <li><a href="#js-objects">2. Core Object Architecture & Prototypes</a></li>
-            <li><a href="#native-browser">3. Native Built-in vs Browser Objects (BOM)</a></li>
-            <li><a href="#dom-env">4. Document Object Model (DOM) Tree Manipulation</a></li>
-            <li><a href="#validation">5. Form Interaction Pipelines & Security Validation</a></li>
-        </ul>
-    </nav>
+            <h3>Accessing Object Properties</h3>
+            <p><strong>Dot Notation:</strong></p>
+<pre><code>console.log(student.name);
+console.log(student.age);</code></pre>
+            
+            <p><strong>Bracket Notation:</strong></p>
+<pre><code>console.log(student["name"]);</code></pre>
+            <p>Bracket notation is useful when the property name is dynamically stored in a variable.</p>
+<pre><code>let property = "course";
+console.log(student[property]);</code></pre>
 
-    <h2 id="js-runtime">1. JavaScript Engine & Concurrency Engine</h2>
-    <p>Client-side environments process non-blocking asynchronous requests using a unified underlying system execution runtime architecture:</p>
-    <ul>
-        <li><strong>Memory Heap:</strong> The runtime allocation workspace where structural dynamic objects are created.</li>
-        <li><strong>Call Stack:</strong> A linear thread processing frame layout tracking sequential block functions.</li>
-        <li><strong>Event Loop:</strong> Keeps the application responsive by moving functions from the Task and Microtask Queues onto the Call Stack once it is empty.</li>
-    </ul>
+            <h3>Modifying Properties</h3>
+            <p><strong>Changing Properties:</strong></p>
+<pre><code>student.age = 22;
+student.course = "Advanced JavaScript";</code></pre>
+            <p><strong>Adding Properties:</strong></p>
+<pre><code>student.email = "anita@example.com";</code></pre>
+            <p><strong>Deleting Properties:</strong></p>
+<pre><code>delete student.email;</code></pre>
+        </section>
 
-    <h2 id="js-objects">2. Core Object Architecture & Prototypes</h2>
-    <p>JavaScript object properties depend on prototyping loops rather than conventional language blueprints:</p>
-    <div class="code-panel">// Instantiation Paradigm Model
-const blueprint = Object.create(parentPrototype);
-console.log(blueprint.__proto__); // Traces inheritance root layer</div>
-    <ul>
-        <li><strong>Prototype Chains:</strong> If a method property is missing on an object instance, the system recursively checks parent scopes until it hits <code>Object.prototype</code>.</li>
-        <li><strong>Dynamic Prototypes:</strong> Declaring shared methods on prototypes optimizes memory by preventing duplicate instances from being created.</li>
-    </ul>
+        <!-- Section 3 -->
+        <section id="methods">
+            <h2>3. Methods in Objects</h2>
+            <p>A function stored inside an object is called a method.</p>
+<pre><code>let user = {
+    name: "Ravi",
 
-    <h2 id="native-browser">3. Native Built-in vs Browser Objects (BOM)</h2>
-    <p>Modern applications coordinate operations smoothly across two separate execution object environments:</p>
-    <ul>
-        <li><strong>JavaScript Own Native Objects:</strong> Embedded core engine constructors including <code>Object</code>, <code>Array</code>, <code>JSON</code>, and <code>RegExp</code>.</li>
-        <li><strong>Browser Objects (BOM):</strong> The Browser Object Model provides context-specific objects that expose details about the user environment (e.g., <code>window</code>, <code>navigator</code>, <code>location</code>, <code>history</code>).</li>
-    </ul>
-
-    <h2 id="dom-env">4. Document Object Model (DOM) Tree Manipulation</h2>
-    <p>The DOM provides an object-oriented structural node interface for rendering web pages:</p>
-    <div class="code-panel">// Efficient Batch Node Construction Blueprint
-const bufferFragment = document.createDocumentFragment();
-let dynamicLeaf = document.createElement("p");
-dynamicLeaf.textContent = "Appended Item.";
-bufferFragment.appendChild(dynamicLeaf);
-document.body.appendChild(bufferFragment); // Minimizes visual repaints</div>
-
-    <h2 id="validation">5. Form Interaction Pipelines & Security Validation</h2>
-    <p>Client-side form validation intercepts submission events to verify inputs before data is securely transmitted to the back-end:</p>
-    <div class="code-panel">// Validation Routine Form Interception
-document.getElementById("form").addEventListener("submit", (e) => {
-    if (!/^\d{5}$/.test(document.getElementById("zip").value)) {
-        e.preventDefault(); // Aborts submission if pattern fails
-        alert("Invalid format detected.");
+    greet: function() {
+        console.log("Hello, " + this.name);
     }
-});</div>
+};
 
-</div>
+user.greet();</code></pre>
+            <p>The keyword <code>this</code> refers to the object that is calling the method.</p>
 
-</body>
-</html>
+            <h3>Modern Method Syntax</h3>
+<pre><code>let user = {
+    name: "Ravi",
+
+    greet() {
+        console.log(`Hello, ${this.name}`);
+    }
+};</code></pre>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="destructuring">
+            <h2>4. Object Destructuring</h2>
+            <p>Destructuring extracts properties from an object cleanly into separate variables.</p>
+<pre><code>let student = {
+    name: "Priya",
+    age: 20
+};
+
+let { name, age } = student;
+
+console.log(name);
+console.log(age);</code></pre>
+            <p>You can also rename properties during extraction:</p>
+<pre><code>let { name: studentName } = student;
+
+console.log(studentName);</code></pre>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="spread">
+            <h2>5. Object Spread Operator</h2>
+            <p>The spread operator (<code>...</code>) copies object properties over into a new object structure.</p>
+<pre><code>let person = {
+    name: "Amit",
+    age: 25
+};
+
+let updatedPerson = {
+    ...person,
+    city: "Mumbai"
+};
+
+console.log(updatedPerson);</code></pre>
+            <p>It can also be used to selectively update properties:</p>
+<pre><code>let changedPerson = {
+    ...person,
+    age: 26
+};</code></pre>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="obj-methods">
+            <h2>6. Built-in Object Methods</h2>
+            
+            <h3>Object.keys()</h3>
+            <p>Returns an array containing the property names (keys).</p>
+<pre><code>let product = {
+    name: "Laptop",
+    price: 50000
+};
+
+console.log(Object.keys(product)); 
+// Output: ["name", "price"]</code></pre>
+
+            <h3>Object.values()</h3>
+            <p>Returns an array containing the actual property values.</p>
+<pre><code>console.log(Object.values(product));
+// Output: ["Laptop", 50000]</code></pre>
+
+            <h3>Object.entries()</h3>
+            <p>Returns multi-dimensional arrays consisting of nested key-value pairs.</p>
+<pre><code>console.log(Object.entries(product));</code></pre>
+
+            <h3>Object.assign()</h3>
+            <p>Copies properties from one or more source objects to a target object.</p>
+<pre><code>let first = { a: 1 };
+let second = { b: 2 };
+
+let combined = Object.assign({}, first, second);
+console.log(combined);
+</code></pre>
+<!-- Section 7 -->
+<section id="own-objects">
+    <h2>7. JavaScript Own Objects</h2>
+    <p>An own object usually means an object created by the programmer. Its properties are directly attached to that object.</p>
+<pre><code>let book = {
+    title: "JavaScript Guide",
+    author: "John",
+    price: 400
+};</code></pre>
+    <p>The properties <code>title</code>, <code>author</code>, and <code>price</code> are own properties of <code>book</code>.</p>
+
+    <h3>Checking an Own Property</h3>
+<pre><code>console.log(book.hasOwnProperty("title")); 
+// Output: true</code></pre>
+    <p>Modern syntax alternative:</p>
+<pre><code>console.log(Object.hasOwn(book, "price"));</code></pre>
+
+    <h3>User-Defined Constructor</h3>
+<pre><code>function Employee(name, salary) {
+    this.name = name;
+    this.salary = salary;
+}
+
+let employee1 = new Employee("Ravi", 30000);
+
+console.log(employee1.name);</code></pre>
+
+    <h3>User-Defined Class</h3>
+<pre><code>class Employee {
+    constructor(name, salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    displayDetails() {
+        console.log(`${this.name} earns ${this.salary}`);
+    }
+}
+
+let employee = new Employee("Anita", 40000);
+employee.displayDetails();</code></pre>
+</section>
+
+<!-- Section 8 -->
+<section id="builtin-objects">
+    <h2>8. Built-in JavaScript Objects</h2>
+    <p>JavaScript provides many predefined objects to handle core language behaviors and data types.</p>
+    
+    <table border="1" cellpadding="8" style="width:100%; border-collapse: collapse; margin-bottom: 20px; border-color: #e2e8f0; color: #475569;">
+        <thead>
+            <tr style="background-color: #f8fafc; color: #0f172a; text-align: left;">
+                <th>Object</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Object</strong></td><td>Works with objects</td></tr>
+            <tr><td><strong>Array</strong></td><td>Stores multiple values</td></tr>
+            <tr><td><strong>String</strong></td><td>Works with text</td></tr>
+            <tr><td><strong>Number</strong></td><td>Works with numbers</td></tr>
+            <tr><td><strong>Boolean</strong></td><td>Represents true or false</td></tr>
+            <tr><td><strong>Date</strong></td><td>Works with dates and times</td></tr>
+            <tr><td><strong>Math</strong></td><td>Provides mathematical functions</td></tr>
+            <tr><td><strong>RegExp</strong></td><td>Works with patterns</td></tr>
+            <tr><td><strong>JSON</strong></td><td>Converts JSON data</td></tr>
+            <tr><td><strong>Map</strong></td><td>Stores key-value pairs</td></tr>
+            <tr><td><strong>Set</strong></td><td>Stores unique values</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Example: Math</h3>
+<pre><code>console.log(Math.round(4.6));
+console.log(Math.floor(4.9));
+console.log(Math.ceil(4.1));
+console.log(Math.random());</code></pre>
+
+    <h3>Example: JSON</h3>
+<pre><code>let student = {
+    name: "Amit",
+    age: 20
+};
+
+let jsonData = JSON.stringify(student);
+console.log(jsonData);
+
+let originalObject = JSON.parse(jsonData);
+console.log(originalObject.name);</code></pre>
+</section>
+<!-- Section 9 -->
+<section id="arrays-objects">
+    <h2>9. Arrays as Objects</h2>
+    <p>An array stores multiple values sequentially. In JavaScript, arrays are technically specialized objects with numeric keys called indexes.</p>
+<pre><code>let numbers = [10, 5, 30, 20];</code></pre>
+    <p>Array indexes start from <code>0</code>.</p>
+<pre><code>console.log(numbers[0]);  // Output: 10
+console.log(numbers.length); // Output: 4</code></pre>
+
+    <h3>Common Array Methods</h3>
+<pre><code>numbers.push(40);       // Add at the end
+numbers.pop();          // Remove from the end
+numbers.unshift(5);     // Add at the beginning
+numbers.shift();        // Remove from the beginning</code></pre>
+
+    <h3>map()</h3>
+    <p>Creates a new array by performing a function on every element of the source array.</p>
+<pre><code>let numbers =;
+
+let squares = numbers.map(function(number) {
+    return number * number;
+});
+
+console.log(squares); // Output: [1, 4, 9, 16]</code></pre>
+
+    <h3>filter()</h3>
+    <p>Returns a new array containing elements that pass a specific conditional check.</p>
+<pre><code>let ages =;
+
+let adults = ages.filter(function(age) {
+    return age >= 18;
+});
+
+console.log(adults); // Output: [18, 25, 30]</code></pre>
+
+    <h3>reduce()</h3>
+    <p>Reduces an array down to a single value by executing a callback on each element.</p>
+<pre><code>let numbers =;
+
+let total = numbers.reduce(function(sum, number) {
+    return sum + number;
+}, 0);
+
+console.log(total); // Output: 60</code></pre>
+
+    <h3>Sorting Arrays</h3>
+    <p><strong>Strings:</strong></p>
+<pre><code>let names = ["Zara", "Amit", "John"];
+names.sort();
+
+console.log(names); // Output: ["Amit", "John", "Zara"]</code></pre>
+    
+    <p><strong>Numbers (Ascending Order):</strong></p>
+<pre><code>let numbers =;
+
+numbers.sort(function(a, b) {
+    return a - b;
+});
+
+console.log(numbers); // Output: [5, 25, 40, 100]</code></pre>
+
+    <p><strong>Numbers (Descending Order):</strong></p>
+<pre><code>numbers.sort(function(a, b) {
+    return b - a;
+});
+
+console.log(numbers); // Output: [100, 40, 25, 5]</code></pre>
+    <p><strong>Important:</strong> Without an explicit comparison function, numbers are sorted alphabetically as if they were strings (e.g., "100" comes before "25").</p>
+</section>
+
+<!-- Section 10 -->
+<section id="the-dom">
+    <h2>10. The DOM</h2>
+    <p><strong>DOM</strong> stands for <strong>Document Object Model</strong>.</p>
+    <p>The browser converts an incoming HTML page into a live tree of objects. JavaScript targets this tree structure to read and dynamically adjust the page view.</p>
+    
+    <p>Example HTML breakdown:</p>
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Welcome&lt;/h1&gt;
+        &lt;p&gt;Hello&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <p>The resulting DOM structures contain objects that represent:</p>
+    <ul>
+        <li>The root document</li>
+        <li>HTML elements</li>
+        <li>Attributes (classes, IDs, hrefs)</li>
+        <li>Text content</li>
+        <li>Events</li>
+    </ul>
+    
+    <p>Using JavaScript interacting with the DOM, you can safely:</p>
+    <ul>
+        <li>Select HTML elements dynamically.</li>
+        <li>Update written text nodes.</li>
+        <li>Alter CSS visual styles.</li>
+        <li>Add or delete structural elements.</li>
+        <li>Catch and handle user interactions.</li>
+        <li>Validate form field inputs before submission.</li>
+    </ul>
+</section>
+
+<!-- Section 11 -->
+<section id="selecting-elements">
+    <h2>11. Selecting DOM Elements</h2>
+    
+    <h3>getElementById()</h3>
+    <p>Targets exactly one explicit element using its unique ID attribute.</p>
+<pre><code>&lt;p id="message"&gt;Old text&lt;/p&gt;
+
+&lt;script&gt;
+let message = document.getElementById("message");
+message.textContent = "New text";
+&lt;/script&gt;</code></pre>
+
+    <h3>getElementsByClassName()</h3>
+    <p>Selects all matching document elements containing a specific class name. Returns an HTMLCollection.</p>
+<pre><code>let boxes = document.getElementsByClassName("box");</code></pre>
+
+    <h3>getElementsByTagName()</h3>
+    <p>Selects all document elements matching a standard tag name.</p>
+<pre><code>let paragraphs = document.getElementsByTagName("p");</code></pre>
+
+    <h3>querySelector()</h3>
+    <p>Returns the very first element matching a standard CSS selector expression.</p>
+<pre><code>let heading = document.querySelector("h1");  // Tag selector
+let box = document.querySelector(".box");     // Class selector
+let item = document.querySelector("#item");   // ID selector</code></pre>
+
+    <h3>querySelectorAll()</h3>
+    <p>Returns all elements matching the given CSS selector inside a static NodeList, allowing iteration.</p>
+<pre><code>let paragraphs = document.querySelectorAll("p");
+
+paragraphs.forEach(function(paragraph) {
+    paragraph.style.color = "blue";
+});</code></pre>
+</section>
+
+<!-- Section 12 -->
+<section id="changing-content">
+    <h2>12. Changing HTML Content</h2>
+    
+    <h3>textContent</h3>
+    <p>Alters or updates plain text exclusively, ignoring structural HTML entities.</p>
+<pre><code>document.getElementById("message").textContent = "This is new text.";</code></pre>
+
+    <h3>innerHTML</h3>
+    <p>Parses standard HTML tags, allowing structural changes directly inside the target node.</p>
+<pre><code>document.getElementById("message").innerHTML = "&lt;strong&gt;Important message&lt;/strong&gt;";</code></pre>
+    <p><strong>Security Note:</strong> Always prefer <code>textContent</code> when rendering plain text data strings. Using <code>innerHTML</code> with unvalidated input from users leaves applications exposed to Cross-Site Scripting (XSS) injection attacks.</p>
+
+    <h3>Input Values</h3>
+    <p>To read or update interactive form inputs, use the <code>.value</code> property instead of text properties.</p>
+<pre><code>let username = document.getElementById("username").value;</code></pre>
+</section>
+<!-- Section 13 -->
+<section id="changing-css">
+    <h2>13. Changing CSS with JavaScript</h2>
+    
+    <h3>Using the style Property</h3>
+    <p>Modifies inline styles directly on an individual element node.</p>
+<pre><code>let heading = document.getElementById("heading");
+
+heading.style.color = "red";
+heading.style.backgroundColor = "yellow";
+heading.style.fontSize = "30px";</code></pre>
+
+    <h3>Using Classes</h3>
+    <p>Leverages class definitions within CSS rules to style elements efficiently.</p>
+<pre><code>&lt;style&gt;
+.highlight {
+    color: white;
+    background-color: green;
+    padding: 10px;
+}
+&lt;/style&gt;
+
+&lt;p id="message"&gt;Hello&lt;/p&gt;</code></pre>
+    <p>Manipulate those classes cleanly using <code>classList</code> methods:</p>
+<pre><code>let message = document.getElementById("message");
+
+message.classList.add("highlight");    // Adds the class
+message.classList.remove("highlight"); // Removes the class
+message.classList.toggle("highlight"); // Toggles class state</code></pre>
+    <p><strong>Best Practice:</strong> Managing styles with CSS classes via <code>classList</code> keeps presentation separated from logic, making maintenance much easier than inline assignments.</p>
+</section>
+
+<!-- Section 14 -->
+<section id="create-remove-dom">
+    <h2>14. Creating and Removing DOM Elements</h2>
+    
+    <h3>Creating an Element</h3>
+    <p>Instantiates a new element structure in memory and appends it to the DOM tree node hierarchy.</p>
+<pre><code>let paragraph = document.createElement("p");
+
+paragraph.textContent = "This paragraph was created using JavaScript.";
+
+document.body.appendChild(paragraph);</code></pre>
+
+    <h3>Adding an Element to a Specific Parent</h3>
+<pre><code>&lt;ul id="list"&gt;&lt;/ul&gt;
+
+&lt;script&gt;
+let listItem = document.createElement("li");
+listItem.textContent = "New item";
+
+document.getElementById("list").appendChild(listItem);
+&lt;/script&gt;</code></pre>
+
+    <h3>Removing an Element</h3>
+    <p>Removes a node structure entirely from the running layout context tree.</p>
+<pre><code>listItem.remove();</code></pre>
+    <p>Legacy standard variant for older runtime environments:</p>
+<pre><code>let item = document.getElementById("oldItem");
+item.parentNode.removeChild(item);</code></pre>
+</section>
+
+<!-- Section 15 -->
+<section id="dom-events">
+    <h2>15. DOM Events</h2>
+    <p>An event represents an active lifecycle step or user action happening inside the browser viewport context.</p>
+    
+    <p>Common event types include:</p>
+    <ul>
+        <li><code>click</code> / <code>dblclick</code></li>
+        <li><code>mouseover</code> / <code>mouseout</code></li>
+        <li><code>keydown</code> / <code>keyup</code></li>
+        <li><code>focus</code> / <code>blur</code></li>
+        <li><code>input</code> / <code>change</code></li>
+        <li><code>submit</code> / <code>load</code></li>
+    </ul>
+
+    <h3>Using addEventListener()</h3>
+<pre><code>&lt;button id="button"&gt;Click Me&lt;/button&gt;
+&lt;p id="output"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let button = document.getElementById("button");
+
+button.addEventListener("click", function() {
+    document.getElementById("output").textContent = "Button clicked.";
+});
+&lt;/script&gt;</code></pre>
+
+    <h3>Event Object</h3>
+    <p>Callback routines receive a tracking object argument describing the target properties of that interaction.</p>
+<pre><code>document.addEventListener("keydown", function(event) {
+    console.log("Key pressed:", event.key);
+});</code></pre>
+
+    <h3>Preventing Default Action</h3>
+    <p>Stops default runtime routines from terminating execution tracking loops automatically.</p>
+<pre><code>form.addEventListener("submit", function(event) {
+    event.preventDefault();
+});</code></pre>
+    <p>This avoids immediate form submissions and subsequent page refreshes, permitting safe inline client-side validation logic.</p>
+</section>
+
+<!-- Section 23 -->
+<section id="forms-html">
+    <h2>23. Forms in HTML</h2>
+    <p>Form controls gather and pack unstructured end-user input datasets safely.</p>
+<pre><code>&lt;form id="loginForm"&gt;
+    &lt;label&gt;Username:&lt;/label&gt;
+    &lt;input type="text" id="username"&gt;
+
+    &lt;label&gt;Password:&lt;/label&gt;
+    &lt;input type="password" id="password"&gt;
+
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    <p>Primary interactive core form components include:</p>
+    <ul>
+        <li>Text, Password, and Email field variations</li>
+        <li>Radio buttons (single category pick alternatives)</li>
+        <li>Checkboxes (multiple active selections toggle elements)</li>
+        <li>Select dropdown menus</li>
+        <li>Multi-line Textareas</li>
+        <li>Form submission trigger buttons</li>
+    </ul>
+</section>
+
+<!-- Section 24 -->
+<section id="reading-form-values">
+    <h2>24. Reading Form Values</h2>
+    <p>To inspect active information entered within target elements, always access their specific value attribute properties.</p>
+<pre><code>let username = document.getElementById("username").value;
+let password = document.getElementById("password").value;
+
+console.log(username);
+console.log(password);</code></pre>
+</section>
+
+<!-- Section 25 -->
+<section id="basic-form-validation">
+    <h2>25. Basic Form Validation</h2>
+    <p>Validation processes interrupt structural pipeline errors client-side before sending missing data fragments over backend endpoints.</p>
+<pre><code>&lt;form id="myForm"&gt;
+    &lt;input type="text" id="username"&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+document.getElementById("myForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // HALT form submission routing loops
+
+    let username = document.getElementById("username").value.trim(); // Trim spaces
+
+    if (username === "") {
+        alert("Username is required.");
+    } else {
+        alert("Form is valid.");
+    }
+});
+&lt;/script&gt;</code></pre>
+</section>
+
+<!-- Section 28 -->
+<section id="complete-validation-example">
+    <h2>28. Complete Form Validation Example</h2>
+    <p>The code script below wires real-time structural processing to display descriptive error state markers inline cleanly underneath input tags without intrusive alert banners.</p>
+<pre><code>&lt;form id="registrationForm"&gt;
+    &lt;label&gt;Email:&lt;/label&gt;
+    &lt;input type="text" id="email"&gt;
+    &lt;div id="emailError" class="error"&gt;&lt;/div&gt;
+
+    &lt;label&gt;Password:&lt;/label&gt;
+    &lt;input type="password" id="password"&gt;
+    &lt;div id="passwordError" class="error"&gt;&lt;/div&gt;
+
+    &lt;button type="submit"&gt;Register&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+let form = document.getElementById("registrationForm");
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value;
+
+    let emailError = document.getElementById("emailError");
+    let passwordError = document.getElementById("passwordError");
+
+    // Reset error text
+    emailError.textContent = "";
+    passwordError.textContent = "";
+
+    let valid = true;
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (email === "") {
+        emailError.textContent = "Email is required.";
+        valid = false;
+    } else if (!emailPattern.test(email)) {
+        emailError.textContent = "Enter a valid email address.";
+        valid = false;
+    }
+
+    if (password === "") {
+        passwordError.textContent = "Password is required.";
+        valid = false;
+    } else if (password.length &lt; 8) {
+        passwordError.textContent = "Password must contain at least 8 characters.";
+        valid = false;
+    }
+
+    if (valid) {
+        alert("Registration successful.");
+        form.reset();
+    }
+});
+&lt;/script&gt;</code></pre>
+</section>
+
+<!-- Section 29 -->
+<section id="html-built-in-validation">
+    <h2>29. HTML Built-in Validation</h2>
+    <p>Native browser engines validate standard input constraints immediately using structural declarative tag attributes.</p>
+<pre><code>&lt;form&gt;
+    &lt;input type="email" required&gt;
+    &lt;input type="password" minlength="8" required&gt;
+    &lt;input type="number" min="1" max="100"&gt;
+
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+    <table border="1" cellpadding="8" style="width:100%; border-collapse: collapse; margin-top: 15px; border-color: #e2e8f0; color: #475569;">
+        <thead>
+            <tr style="background-color: #f8fafc; color: #0f172a; text-align: left;">
+                <th>Attribute</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><code>required</code></td><td>Field must not be left blank or empty</td></tr>
+            <tr><td><code>type="email"</code></td><td>Enforces correct syntactic email formatting structures</td></tr>
+            <tr><td><code>minlength</code> / <code>maxlength</code></td><td>Sets minimum or maximum string tracking boundary ranges</td></tr>
+            <tr><td><code>min</code> / <code>max</code></td><td>Caps bounding range constraints for numerical data entries</td></tr>
+            <tr><td><code>pattern</code></td><td>Matches content format values straight against custom regular expressions</td></tr>
+            <tr><td><code>placeholder</code></td><td>Displays faint visual instructional hints inside the input fields</td></tr>
+        </tbody>
+    </table>
