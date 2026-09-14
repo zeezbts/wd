@@ -1,322 +1,1081 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Core JavaScript Reference Guide</title>
-    <style>
-        :root {
-            --primary-color: #1e3a8a;
-            --secondary-color: #334155;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-color: #334155;
-            --accent-color: #f59e0b; /* Yellow/Amber color accent for JavaScript theme */
-            --border-color: #e2e8f0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit IV: JavaScript Basics - Student Study Guide</title>
+  <style>
+    /* Global Styles & Blue Theme Color Palette */
+    :root {
+      --primary-color: #1e3a8a; /* Deep Blue */
+      --secondary-color: #3b82f6; /* Bright Blue */
+      --accent-color: #dbeafe; /* Light Blue Accent */
+      --text-color: #1f2937; /* Dark Gray for readability */
+      --bg-color: #f8fafc; /* Soft White/Slate Background */
+      --code-bg: #0f172a; /* Dark Slate for Code Blocks */
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 20px;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 0 0 40px 0;
+    }
 
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 10px;
-        }
+    /* Header Styling */
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
 
-        .section-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
 
-        .section-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-top: 0;
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 5px;
-        }
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
 
-        h4 {
-            margin: 10px 0 5px 0;
-            color: #0f172a;
-        }
+    /* Container Area */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
 
-        ul {
-            margin: 0 0 15px 0;
-            padding-left: 20px;
-        }
+    /* Card/Section Box Styling */
+    section {
+      background: white;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      border-left: 5px solid var(--secondary-color);
+    }
 
-        li {
-            margin-bottom: 0.4rem;
-        }
+    h2 {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 8px;
+    }
 
-        .code-box {
-            background-color: #f1f5f9;
-            padding: 12px 15px;
-            border-radius: 4px;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 0.9rem;
-            white-space: pre-wrap;
-            border-left: 4px solid var(--accent-color);
-            margin-top: 10px;
-            color: #0f172a;
-        }
-    </style>
+    h3 {
+      color: var(--secondary-color);
+      margin: 20px 0 10px 0;
+      font-size: 1.3rem;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    /* Lists styling */
+    ul, ol {
+      margin-left: 25px;
+      margin-bottom: 15px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background-color: white;
+    }
+
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--bg-color);
+    }
+
+    /* Code Blocks styling */
+    pre {
+      background-color: var(--code-bg);
+      color: #f8fafc;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 15px 0;
+      font-size: 0.95rem;
+    }
+
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: var(--accent-color);
+      color: #1e40af;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    pre code {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+      border-radius: 0;
+      font-weight: normal;
+    }
+
+    /* Interactive Demo Button Feature */
+    .demo-box {
+      background-color: var(--accent-color);
+      border: 1px solid var(--secondary-color);
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .btn-blue {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-blue:hover {
+      background-color: var(--secondary-color);
+    }
+
+    /* File tag labels for external code method */
+    .file-tag {
+      display: inline-block;
+      background-color: #64748b;
+      color: white;
+      padding: 2px 8px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border-radius: 4px 4px 0 0;
+      margin-top: 10px;
+    }
+
+    .file-tag.html-tag { background-color: #e34c26; }
+    .file-tag.js-tag { background-color: #f1e05a; color: #333; }
+  </style>
 </head>
 <body>
 
-<div class="container">
+  <header>
+    <h1>Unit IV: Introduction to JavaScript</h1>
+    <p>Course Study Material &bull; Client-Side Scripting Essentials</p>
+  </header>
 
-    <h1>JavaScript Core Syntax Reference</h1>
+  <div class="container">
 
-    <!-- 1. What is JS -->
-    <div class="section-card">
-        <div class="section-title">1. Introduction to JavaScript</div>
-        <ul>
-            <li><strong>Definition:</strong> High-level, single-threaded, dynamic interpreted browser scripting language.</li>
-            <li><strong>Role:</strong> Manages behavioral actions and user runtime interactivity layers on client screens.</li>
-            <li><strong>Execution:</strong> Code compiles and executes directly inside native client engines (e.g., V8).</li>
-        </ul>
-    </div>
+    <!-- SECTION 1 -->
+    <section>
+      <h2>1. What Is Client-Side Scripting?</h2>
+      <p>A website usually uses three main core technologies working together:</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Technology</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>HTML</strong></td>
+            <td>Creates the foundational structure of a web page</td>
+          </tr>
+          <tr>
+            <td><strong>CSS</strong></td>
+            <td>Adds colors, customized layout, and visual design</td>
+          </tr>
+          <tr>
+            <td><strong>JavaScript</strong></td>
+            <td>Adds dynamic actions and live user interactivity</td>
+          </tr>
+        </tbody>
+      </table>
 
-    <!-- 2. Variables -->
-    <div class="section-card">
-        <div class="section-title">2. Variables & Scoping Bounds</div>
-        <ul>
-            <li><strong>var:</strong> Legacy variable scope definition keyword. Function-scoped, prone to hoisting issues.</li>
-            <li><strong>let:</strong> Modern block-scoped variable declaration. Values can be safely reassigned over time.</li>
-            <li><strong>const:</strong> Block-scoped read-only constant declaration. Reassignment is strictly prohibited.</li>
-        </ul>
-        <div class="code-box">let itemTotal = 450;
-const conversionRate = 0.82;</div>
-    </div>
+      <p><strong>Client-side scripting</strong> means that a program runs directly inside the user’s local web browser instead of relying constantly on the external server.</p>
+      
+      <p>For example, when you perform any of these actions, JavaScript is likely executing in the background:</p>
+      <ul>
+        <li>Click a button</li>
+        <li>Open a drop-down navigation menu</li>
+        <li>Submit a form interface</li>
+        <li>See an instantaneous validation error message</li>
+        <li>Dynamically alter page colors</li>
+        <li>Use an interactive calculator tool directly on a web page</li>
+      </ul>
 
-    <!-- 3. Functions -->
-    <div class="section-card">
-        <div class="section-title">3. Functional Declarations</div>
-        <ul>
-            <li><strong>Mechanics:</strong> Packaged blocks of logic that accept parameters and run only when explicitly invoked.</li>
-            <li><strong>Return Payload:</strong> Employs explicit <code>return</code> commands to pass calculated data payloads back to callers.</li>
-        </ul>
-        <div class="code-box">function evaluateTax(amount) {
-    return amount * 0.15;
-}</div>
-    
+      <h3>Interactive Client-Side Example</h3>
+      <p>Test out this basic embedded sample implementation directly below:</p>
+      
+      <div class="demo-box">
+        <h3 id="interactive-title" style="color:#1f2937; margin-top:0;">Welcome Student</h3>
+        <button class="btn-blue" onclick="changeTitle()">Click to Change Text</button>
+      </div>
 
-    <!-- 4. Conditionals and Loops -->
-    <div class="section-card">
-        <div class="section-title">4. Conditionals & Repetition Loops</div>
-        
-    <h2>1. Conditional Statements</h2>
-    
-    <h2>JavaScript Conditionals</h2>
-    <ul>
-        <li>
-            <strong>if Statement:</strong> A basic decision structure that executes a block of code only if its specified condition evaluates to true.
-            <p><strong>Syntax:</strong></p>
-<pre><code>if (condition) {
-  // Code runs if condition is true
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+  &lt;h1 id="title"&gt;Welcome&lt;/h1&gt;
+  &lt;button onclick="changeTitle()"&gt;Change Text&lt;/button&gt;
+
+  &lt;script&gt;
+    function changeTitle() {
+      document.getElementById("title").textContent = "Hello, JavaScript!";
+    }
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <h3>Client-Side vs. Server-Side Scripting</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Client-Side Scripting</th>
+            <th>Server-Side Scripting</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Runs directly locally within your browser.</td>
+            <td>Runs remotely on a web server setup.</td>
+          </tr>
+          <tr>
+            <td>Gives instant, snappy responses.</td>
+            <td>Processes sensitive data and user accounts safely.</td>
+          </tr>
+          <tr>
+            <td>Changes page content without full reloads.</td>
+            <td>Communicates securely with underlying databases.</td>
+          </tr>
+          <tr>
+            <td>Commonly utilizes JavaScript framework standards.</td>
+            <td>Uses technologies such as Node.js, PHP, Python, or Java.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><em>Note: JavaScript is unique because it can be used on both the client side and the server side!</em></p>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section>
+      <h2>2. What Is JavaScript?</h2>
+      <p><strong>JavaScript</strong> is a lightweight programming language used to make web pages highly interactive and dynamically updated.</p>
+      
+      <p>JavaScript has the capability to:</p>
+      <ul>
+        <li>Display pop-up alerts and logs</li>
+        <li>Calculate equations and numeric data</li>
+        <li>Change HTML content structural texts dynamically</li>
+        <li>Modify CSS styling formats on the fly</li>
+        <li>Validate user forms before processing submission data</li>
+        <li>Respond instantly to mouse movements, clicks, and keystrokes</li>
+        <li>Execute repeating tasks and evaluate structural conditional decisions</li>
+      </ul>
+
+      <h3>Simple Output Commands</h3>
+      <p>Displaying data using developer tool logs:</p>
+      <pre><code>console.log("Hello, JavaScript!");</code></pre>
+      
+      <p>Displaying basic pop-up interface prompt windows:</p>
+      <pre><code>alert("Welcome to my website!");</code></pre>
+
+      <h3>JavaScript Is Case-Sensitive</h3>
+      <p>JavaScript treats uppercase and lowercase letters as completely unique keywords.</p>
+      <pre><code>let name = "Ali";
+
+console.log(name); // Correct: outputs "Ali"
+console.log(Name); // Error: "Name" is not defined</code></pre>
+
+      <h3>Comments in JavaScript</h3>
+      <p>Comments are non-executing descriptive text notes used to assist developers with documentation.</p>
+      
+      <p><strong>Single-Line Comment:</strong> Use double slashes <code>//</code></p>
+<pre><code>// This is a single-line comment
+let age = 20;</code></pre>
+
+      <p><strong>Multiple-Line Comment:</strong> Wrap content within <code>/* */</code> markers</p>
+<pre><code>/*
+  This is a multiple-line comment.
+  It can safely contain several lines.
+*/
+let score = 90;</code></pre>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section>
+      <h2>3. How to Develop JavaScript</h2>
+      <p>There are three main development approaches to append scripts onto web pages:</p>
+
+      <h3>Method 1: Inline Attribute Scripting</h3>
+      <pre><code>&lt;button onclick="alert('Hello!')"&gt;Click Me&lt;/button&gt;</code></pre>
+      <p><em>*Avoid this in larger scaled projects because it clutters structural HTML markup.</em></p>
+
+<div class="method-card" style="font-family: 'Segoe UI', sans-serif; background: #ffffff; border-left: 5px solid #3b82f6; padding: 20px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); color: #1f2937;">
+
+  <h3 style="color: #3b82f6; margin-top: 0; margin-bottom: 10px; font-size: 1.25rem;">Method 2: Embedded Internal Script Tags</h3>
+  
+  <pre style="background: #0f172a; color: #f8fafc; padding: 12px; border-radius: 6px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; margin-bottom: 20px;"><code>&lt;script&gt;
+  console.log("JavaScript is running internal.");
+&lt;/script&gt;</code></pre>
+
+  <h3 style="color: #3b82f6; margin-top: 25px; margin-bottom: 5px; font-size: 1.25rem;">Method 3: External Script Files (Best Practice)</h3>
+  <p style="margin-bottom: 15px; font-size: 0.95rem; color: #4b5563; line-height: 1.5;">This is highly recommended to split programmatic operational tasks away from actual presentation setups.</p>
+  
+  <!-- File Tag for index.html -->
+  <div style="display: inline-block; background: #e34c26; color: white; padding: 2px 8px; font-size: 0.8rem; font-weight: bold; border-radius: 4px 4px 0 0;">index.html</div>
+  <pre style="background: #0f172a; color: #f8fafc; padding: 12px; border-radius: 0 6px 6px 6px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; margin-top: 0; margin-bottom: 20px;"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My JavaScript Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1 id="heading"&gt;Hello&lt;/h1&gt;
+  &lt;button id="button"&gt;Click Me&lt;/button&gt;
+
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+  <!-- File Tag for script.js -->
+  <div style="display: inline-block; background: #f1e05a; color: #333; padding: 2px 8px; font-size: 0.8rem; font-weight: bold; border-radius: 4px 4px 0 0;">script.js</div>
+  <pre style="background: #0f172a; color: #f8fafc; padding: 12px; border-radius: 0 6px 6px 6px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; margin-top: 0; margin-bottom: 0;"><code>let button = document.getElementById("button");
+
+button.onclick = function () {
+  document.getElementById("heading").textContent = "Button clicked!";
+};</code></pre>
+
+</div>
+<h1>5. Variables</h1>
+<p>A variable is a named container used to store data.</p>
+
+<pre><code>let studentName = "David";</code></pre>
+
+<p>Here:</p>
+<ul>
+    <li><strong>let</strong> creates the variable</li>
+    <li><strong>studentName</strong> is the variable name</li>
+    <li><strong>"David"</strong> is the value</li>
+</ul>
+
+<h2>Creating Variables With let</h2>
+<p>Use <strong>let</strong> when the value may change.</p>
+
+<pre><code>let score = 50;
+score = 75;
+console.log(score);</code></pre>
+
+<p><strong>Output:</strong> 75</p>
+<p>The value of score changed from 50 to 75.</p>
+
+<h2>Creating Variables With const</h2>
+<p>Use <strong>const</strong> when the value should not be changed.</p>
+
+<pre><code>const schoolName = "Green Valley School";
+console.log(schoolName);</code></pre>
+
+<p>This is not allowed:</p>
+<pre><code>const age = 20;
+age = 21; // Error</code></pre>
+
+<p>Use <strong>const</strong> by default when you do not need to change the value.</p>
+
+<h2>The Older var Keyword</h2>
+<p><strong>var</strong> is an older way to create variables.</p>
+
+<pre><code>var color = "blue";</code></pre>
+<p>Modern JavaScript usually uses <strong>let</strong> and <strong>const</strong> instead of <strong>var</strong>.</p>
+
+<h2>Rules for Variable Names</h2>
+<p>Variable names:</p>
+<ul>
+    <li>Can contain letters</li>
+    <li>Can contain numbers, but not at the beginning</li>
+    <li>Can contain _ and $</li>
+    <li>Cannot contain spaces</li>
+    <li>Should describe the stored value</li>
+    <li>Are case-sensitive</li>
+</ul>
+
+<h3>Valid names:</h3>
+<pre><code>let studentName;
+let age2;
+let total_price;</code></pre>
+
+<h3>Invalid names:</h3>
+<pre><code>let 2age;       // Cannot start with a number
+let student name; // Cannot contain spaces
+let let;        // Cannot use a reserved word</code></pre>
+
+<p>A common style is <strong>camelCase</strong>:</p>
+<pre><code>let firstName = "Maria";
+let totalMarks = 450;</code></pre>
+<h1>6. JavaScript Data Types</h1>
+<p>A data type describes the kind of information stored in a variable.</p>
+
+<h2>String</h2>
+<p>A string is text.</p>
+<pre><code>let name = "Ahmed";
+let message = 'Hello';</code></pre>
+<p>Strings can use single or double quotation marks.</p>
+
+<h2>Number</h2>
+<p>A number can be an integer or decimal.</p>
+<pre><code>let age = 25;
+let price = 19.99;</code></pre>
+
+<h2>Boolean</h2>
+<p>A Boolean has only two values:</p>
+<pre><code>let isOnline = true;
+let isComplete = false;</code></pre>
+<p>Booleans are useful for conditions.</p>
+
+<h2>Undefined</h2>
+<p>A variable is undefined when it has been created but has no value.</p>
+<pre><code>let result;
+console.log(result);</code></pre>
+<p><strong>Output:</strong> undefined</p>
+
+<h2>Null</h2>
+<p><strong>null</strong> means that a value is intentionally empty.</p>
+<pre><code>let selectedColor = null;</code></pre>
+
+<h2>Array</h2>
+<p>An array stores multiple values in one variable.</p>
+<pre><code>let fruits = ["Apple", "Banana", "Orange"];</code></pre>
+<p>Array positions start at 0.</p>
+<pre><code>console.log(fruits[0]); // Apple
+console.log(fruits[1]); // Banana
+console.log(fruits[2]); // Orange</code></pre>
+
+<h2>Object</h2>
+<p>An object stores information using property names and values.</p>
+<pre><code>let student = {
+  name: "Ali",
+  age: 18,
+  grade: "A"
+};
+
+console.log(student.name);
+console.log(student.age);</code></pre>
+
+<h1>7. Operators</h1>
+<p>Operators are symbols used to perform actions.</p>
+
+<h2>Arithmetic Operators</h2>
+<pre><code>let a = 10;
+let b = 3;
+
+console.log(a + b); // Addition: 13
+console.log(a - b); // Subtraction: 7
+console.log(a * b); // Multiplication: 30
+console.log(a / b); // Division: 3.333...
+console.log(a % b); // Remainder: 1</code></pre>
+<p>The <strong>%</strong> operator is called the modulus or remainder operator.</p>
+
+<h2>Increment and Decrement</h2>
+<pre><code>let number = 5;
+
+number++;
+console.log(number); // 6
+
+number--;
+console.log(number); // 5</code></pre>
+<ul>
+    <li><strong>++</strong> increases a value by 1</li>
+    <li><strong>--</strong> decreases a value by 1</li>
+</ul>
+
+<h2>Assignment Operators</h2>
+<pre><code>let score = 10;
+
+score += 5; // score becomes 15
+score -= 3; // score becomes 12
+score *= 2; // score becomes 24
+score /= 4; // score becomes 6</code></pre>
+
+<h1>8. Functions</h1>
+<p>A function is a reusable block of code.</p>
+<p>Functions help you:</p>
+<ul>
+    <li>Avoid repeating code</li>
+    <li>Organize your program</li>
+    <li>Make code easier to understand</li>
+    <li>Perform a specific task</li>
+</ul>
+
+<h2>Creating a Function</h2>
+<pre><code>function sayHello() {
+  console.log("Hello!");
 }</code></pre>
-            <p><strong>Example:</strong></p>
-<pre><code>let age = 20;
+<p>This creates a function called <strong>sayHello</strong>.</p>
+
+<h2>Calling a Function</h2>
+<p>A function runs when it is called.</p>
+<pre><code>sayHello();</code></pre>
+<p><strong>Output:</strong> Hello!</p>
+
+<h2>Function With a Parameter</h2>
+<p>A parameter is information given to a function.</p>
+<pre><code>function greet(name) {
+  console.log("Hello, " + name);
+}
+
+greet("Aisha");
+greet("Robert");</code></pre>
+<p><strong>Output:</strong><br>
+Hello, Aisha<br>
+Hello, Robert</p>
+<p>The function can work with different names.</p>
+
+<h2>Function With Multiple Parameters</h2>
+<pre><code>function introduce(name, age) {
+  console.log(`My name is ${name} and I am ${age} years old.`);
+}
+
+introduce("Ali", 20);</code></pre>
+
+<h2>Function With a Return Value</h2>
+<p>A function can send a result back using <strong>return</strong>.</p>
+<pre><code>function addNumbers(a, b) {
+  return a + b;
+}
+
+let answer = addNumbers(4, 6);
+console.log(answer);</code></pre>
+<p><strong>Output:</strong> 10</p>
+<p>The returned value can be stored in a variable.</p>
+
+<h2>Arrow Functions</h2>
+<p>An arrow function is a shorter way to write a function.</p>
+<pre><code>const multiply = (a, b) => {
+  return a * b;
+};
+
+console.log(multiply(3, 4));</code></pre>
+<p>For a simple function, it can be even shorter:</p>
+<pre><code>const square = number => number * number;
+
+console.log(square(5));</code></pre>
+
+<h1>9. Conditions</h1>
+<p>Conditions allow a program to make decisions.</p>
+<p>For example:</p>
+<ul>
+    <li>If the user is logged in, show the account page.</li>
+    <li>If the password is incorrect, show an error.</li>
+    <li>If the marks are high, show a good grade.</li>
+</ul>
+
+<h2>The if Statement</h2>
+<pre><code>let temperature = 30;
+
+if (temperature > 25) {
+  console.log("It is hot.");
+}</code></pre>
+<p>The message is shown only when the condition is true.</p>
+
+<h2>The if...else Statement</h2>
+<pre><code>let age = 16;
+
 if (age >= 18) {
-  console.log("Allowed to vote");
-}</code></pre>
-        </li>
-
-        <li>
-            <strong>else Statement:</strong> Paired with an if statement to provide a fallback code block that runs only when the initial condition is false.
-            <p><strong>Syntax:</strong></p>
-<pre><code>if (condition) {
-  // Runs if condition is true
+  console.log("You are an adult.");
 } else {
-  // Runs if condition is false
+  console.log("You are a minor.");
 }</code></pre>
-            <p><strong>Example:</strong></p>
-<pre><code>let score = 45;
-if (score >= 50) {
-  console.log("Passed");
-} else {
-  console.log("Failed");
-}</code></pre>
-        </li>
+<p>If the condition is true, the first block runs. Otherwise, the else block runs.</p>
 
-        <li>
-            <strong>else if Statement:</strong> Evaluates a new condition if the preceding condition evaluates to false, allowing multiple sequential checks.
-            <p><strong>Syntax:</strong></p>
-<pre><code>if (condition1) {
-  // Runs if condition1 is true
-} else if (condition2) {
-  // Runs if condition1 is false and condition2 is true
-}</code></pre>
-            <p><strong>Example:</strong></p>
-<pre><code>let speed = 75;
-if (speed > 80) {
-  console.log("Too fast");
-} else if (speed > 60) {
-  console.log("Normal speed");
-}</code></pre>
-        </li>
+<h2>The else if Statement</h2>
+<p>Use <strong>else if</strong> when there are several possible conditions.</p>
+<pre><code>let marks = 82;
 
-        <li>
-            <strong>if-else-if Ladder:</strong> A chained series of else if statements used to evaluate multiple mutually exclusive conditions in a top-down order.
-            <p><strong>Syntax:</strong></p>
-<pre><code>if (condition1) {
-  // Code block 1
-} else if (condition2) {
-  // Code block 2
-} else if (condition3) {
-  // Code block 3
-} else {
-  // Default code block
-}</code></pre>
-            <p><strong>Example:</strong></p>
-<pre><code>let marks = 85;
 if (marks >= 90) {
-  console.log("Grade A");
+  console.log("Grade A+");
 } else if (marks >= 80) {
-  console.log("Grade B");
+  console.log("Grade A");
 } else if (marks >= 70) {
+  console.log("Grade B");
+} else if (marks >= 50) {
   console.log("Grade C");
 } else {
-  console.log("Grade D");
+  console.log("Fail");
 }</code></pre>
-        </li>
 
-        <li>
-            <strong>Nested if Statement:</strong> An if statement placed inside another if statement, used to test secondary conditions only after a primary condition is met.
-            <p><strong>Syntax:</strong></p>
-<pre><code>if (outerCondition) {
-  if (innerCondition) {
-    // Runs only if both conditions are true
-  }
-}</code></pre>
-            <p><strong>Example:</strong></p>
-<pre><code>let hasAccount = true;
-let balance = 150;
-if (hasAccount) {
-  if (balance > 100) {
-    console.log("Transaction approved");
-  }
-}</code></pre>
-        </li>
+<h2>Comparison Operators</h2>
+<pre><code>let x = 10;
+let y = 5;
 
-        <li>
-            <strong>switch Statement:</strong> A multi-way branch structure that compares a single expression value against predefined case labels using strict equality.
-            <p><strong>Syntax:</strong></p>
-<pre><code>switch (expression) {
-  case value1:
-    // Code block
-    break;
-  case value2:
-    // Code block
-    break;
-  default:
-    // Fallback code block
+x == y;   // Equal in value
+x === y;  // Equal in value and type
+x != y;   // Not equal in value
+x !== y;  // Not equal in value or type
+x > y;    // Greater than
+x < y;    // Less than
+x >= y;   // Greater than or equal to
+x <= y;   // Less than or equal to</code></pre>
+
+<h2>Example</h2>
+<pre><code>let number = 10;
+
+if (number === 10) {
+  console.log("The number is 10.");
 }</code></pre>
-            <p><strong>Example:</strong></p>
-<pre><code>let day = 2;
+<p>It is usually safer to use <strong>===</strong> because it checks both the value and the data type.</p>
+<h2>Logical Operators</h2>
+
+<h3>AND: &amp;&amp;</h3>
+<p>Both conditions must be true.</p>
+<pre><code>let age = 25;
+let hasTicket = true;
+
+if (age &gt;= 18 &amp;&amp; hasTicket === true) {
+  console.log("You can enter.");
+}</code></pre>
+
+<h3>OR: ||</h3>
+<p>At least one condition must be true.</p>
+<pre><code>let day = "Saturday";
+
+if (day === "Saturday" || day === "Sunday") {
+  console.log("It is the weekend.");
+}</code></pre>
+
+<h3>NOT: !</h3>
+<p>Changes true to false or false to true.</p>
+<pre><code>let isClosed = false;
+
+if (!isClosed) {
+  console.log("The shop is open.");
+}</code></pre>
+
+<h2>Ternary Operator</h2>
+<p>The ternary operator is a short form of if...else.</p>
+<pre><code>let age = 20;
+let message = age &gt;= 18 ? "Adult" : "Minor";
+console.log(message);</code></pre>
+<p>This means: If age is 18 or more, use "Adult"; otherwise, use "Minor".</p>
+
+<h2>Switch Statement</h2>
+<p>A switch statement is useful when comparing one value with several options.</p>
+<pre><code>let day = "Monday";
+
 switch (day) {
-  case 1:
-    console.log("Monday");
+  case "Monday":
+    console.log("Start of the week");
     break;
-  case 2:
-    console.log("Tuesday");
+
+  case "Friday":
+    console.log("Almost the weekend");
     break;
+
+  case "Saturday":
+  case "Sunday":
+    console.log("Weekend");
+    break;
+
   default:
-    console.log("Weekend or invalid day");
+    console.log("A normal weekday");
 }</code></pre>
-        </li>
-    </ul>
+<p>The <strong>break</strong> command stops the switch after a matching case is found.</p>
 
+<h1>10. Loops and Repetition</h1>
+<p>A loop repeats code.</p>
+<p>Loops are useful for:</p>
+<ul>
+    <li>Displaying a list of names</li>
+    <li>Counting numbers</li>
+    <li>Processing data</li>
+    <li>Repeating an action</li>
+    <li>Going through an array</li>
+</ul>
 
-    <h2>2. Repetition Loops</h2>
-   <h2>Repetition Loops Definitions, Syntax, and Examples</h2>
-    <ul>
-        <li>
-            <strong>for Loop:</strong> A counting loop that packs counter setup, condition check, and step modification into a single control line.
-            <p><strong>Syntax:</strong></p>
-<pre><code>for (initialization; condition; final-expression) {
-  // Code block to repeat
+<h2>for Loop</h2>
+<p>Use a for loop when you know how many times to repeat something.</p>
+<pre><code>for (let i = 1; i &lt;= 5; i++) {
+  console.log(i);
 }</code></pre>
-            <p><strong>Example:</strong></p>
-<pre><code>for (let i = 1; i <= 3; i++) {
-  console.log("Count: " + i);
-}</code></pre>
-        </li>
 
-        <li>
-            <strong>while Loop:</strong> An entry-controlled structure that repeats a statement block as long as its condition remains true.
-            <p><strong>Syntax:</strong></p>
-<pre><code>while (condition) {
-  // Code block
+<p>This has three parts:</p>
+<pre><code>for (start; condition; update) {
+  // Code to repeat
 }</code></pre>
-            <p><strong>Example:</strong></p>
-<pre><code>let energy = 2;
-while (energy > 0) {
-  console.log("Running...");
-  energy--;
-}</code></pre>
-        </li>
 
-        <li>
-            <strong>do...while Loop:</strong> An exit-controlled loop that processes the statement block once before evaluating the condition.
-            <p><strong>Syntax:</strong></p>
-<pre><code>do {
-  // Code block
-} while (condition);</code></pre>
-            <p><strong>Example:</strong></p>
-<pre><code>let attempts = 0;
+<p>In the example:</p>
+<ul>
+    <li><strong>let i = 1</strong> starts the counter.</li>
+    <li><strong>i &lt;= 5</strong> checks the condition.</li>
+    <li><strong>i++</strong> increases the counter.</li>
+</ul>
+<p><strong>Output:</strong><br>1<br>2<br>3<br>4<br>5</p>
+
+<h3>Counting Backward</h3>
+<pre><code>for (let i = 5; i &gt;= 1; i--) {
+  console.log(i);
+}</code></pre>
+<p><strong>Output:</strong><br>5<br>4<br>3<br>2<br>1</p>
+
+<h2>while Loop</h2>
+<p>A while loop runs as long as its condition is true.</p>
+<pre><code>let number = 1;
+
+while (number &lt;= 5) {
+  console.log(number);
+  number++;
+}</code></pre>
+<p>The counter must change. Otherwise, the loop may never stop.</p>
+
+<h3>Infinite Loop Example</h3>
+<p><em>// Do not run this example</em></p>
+<pre><code>let number = 1;
+
+while (number &lt;= 5) {
+  console.log(number);
+  // number++ is missing
+}</code></pre>
+<p>Because number never changes, the condition remains true forever.</p>
+
+<h2>do...while Loop</h2>
+<p>A do...while loop always runs at least once.</p>
+<pre><code>let number = 10;
+
 do {
-  console.log("Checking...");
-} while (attempts > 0);</code></pre>
-        </li>
+  console.log(number);
+  number++;
+} while (number &lt; 5);</code></pre>
+<p>Even though <code>number &lt; 5</code> is false, the program prints 10 once.</p>
 
-        <li>
-            <strong>for...of Loop:</strong> A collection iterator that extracts values directly from iterable sequences like arrays or strings.
-            <p><strong>Syntax:</strong></p>
-<pre><code>for (const value of iterable) {
-  // Code block
-}</code></pre>
-            <p><strong>Example:</strong></p>
-<pre><code>const colors = ["red", "blue"];
-for (const color of colors) {
+<h2>for...of Loop</h2>
+<p>Use for...of to read values from an array.</p>
+<pre><code>let colors = ["Red", "Green", "Blue"];
+
+for (let color of colors) {
   console.log(color);
 }</code></pre>
-        </li>
+<p><strong>Output:</strong><br>Red<br>Green<br>Blue</p>
 
-        <li>
-            <strong>for...in Loop:</strong> A key investigator loop that traverses the enumerable string property keys of an object.
-            <p><strong>Syntax:</strong></p>
-<pre><code>for (const key in object) {
-  // Code block
+<h2>forEach()</h2>
+<p>forEach() also runs code for every array item.</p>
+<pre><code>let numbers =;
+
+numbers.forEach(function(number) {
+  console.log(number);
+});</code></pre>
+
+<p>Using an arrow function:</p>
+<pre><code>numbers.forEach(number =&gt; {
+  console.log(number);
+});</code></pre>
+
+<h2>break</h2>
+<p>The break statement stops a loop.</p>
+<pre><code>for (let i = 1; i &lt;= 10; i++) {
+  if (i === 5) {
+    break;
+  }
+  console.log(i);
 }</code></pre>
-            <p><strong>Example:</strong></p>
-<pre><code>const user = { name: "Alex", age: 25 };
-for (const key in user) {
-  console.log(key + ": " + user[key]);
+<p><strong>Output:</strong><br>1<br>2<br>3<br>4</p>
+
+<h2>continue</h2>
+<p>The continue statement skips the current repetition and continues with the next one.</p>
+<pre><code>for (let i = 1; i &lt;= 5; i++) {
+  if (i === 3) {
+    continue;
+  }
+  console.log(i);
 }</code></pre>
-        </li>
-    </ul>
-    </div>
-    </div>
-</div></body></html>
+<p><strong>Output:</strong><br>1<br>2<br>4<br>5</p>
+<h1>11. Arrays</h1>
+<p>An array stores several values in one variable.</p>
+
+<pre><code>let fruits = ["Apple", "Banana", "Mango"];</code></pre>
+<p>Array indexes start at 0.</p>
+
+<pre><code>console.log(fruits[0]); // Apple
+console.log(fruits[1]); // Banana
+console.log(fruits[2]); // Mango</code></pre>
+
+<h2>Finding the Array Length</h2>
+<pre><code>console.log(fruits.length);</code></pre>
+<p><strong>Output:</strong> 3</p>
+
+<h2>Adding an Item</h2>
+<pre><code>fruits.push("Orange");
+console.log(fruits);</code></pre>
+
+<h2>Removing the Last Item</h2>
+<pre><code>fruits.pop();</code></pre>
+
+<h2>Adding an Item at the Beginning</h2>
+<pre><code>fruits.unshift("Grapes");</code></pre>
+
+<h2>Removing the First Item</h2>
+<pre><code>fruits.shift();</code></pre>
+
+<h2>Looping Through an Array</h2>
+<pre><code>let students = ["Ali", "Sara", "John"];
+
+for (let i = 0; i &lt; students.length; i++) {
+  console.log(students[i]);
+}</code></pre>
+
+<h1>12. Working With HTML</h1>
+<p>JavaScript can access and change HTML elements. This is called working with the DOM, or Document Object Model.</p>
+
+<h2>Finding an Element by ID</h2>
+<p><strong>HTML</strong></p>
+<pre><code>&lt;p id="message"&gt;Old message&lt;/p&gt;</code></pre>
+<p><strong>JavaScript</strong></p>
+<pre><code>let paragraph = document.getElementById("message");
+paragraph.textContent = "New message";</code></pre>
+
+<h2>Changing CSS With JavaScript</h2>
+<p><strong>HTML</strong></p>
+<pre><code>&lt;h1 id="title"&gt;Hello&lt;/h1&gt;</code></pre>
+<p><strong>JavaScript</strong></p>
+<pre><code>let title = document.getElementById("title");
+title.style.color = "blue";
+title.style.fontSize = "40px";</code></pre>
+
+<h2>Reading Input From a User</h2>
+<p><strong>HTML</strong></p>
+<pre><code>&lt;input id="nameInput" type="text"&gt;
+&lt;button onclick="showName()"&gt;Submit&lt;/button&gt;
+&lt;p id="result"&gt;&lt;/p&gt;</code></pre>
+<p><strong>JavaScript</strong></p>
+<pre><code>function showName() {
+  let name = document.getElementById("nameInput").value;
+  document.getElementById("result").textContent = "Hello, " + name;
+}</code></pre>
+<p>The <strong>.value</strong> property reads what the user typed.</p>
+
+<h1>13. Events</h1>
+<p>An event is an action that happens on a web page.</p>
+<p>Examples include:</p>
+<ul>
+    <li>Clicking a button</li>
+    <li>Moving the mouse</li>
+    <li>Typing on the keyboard</li>
+    <li>Submitting a form</li>
+    <li>Loading a page</li>
+</ul>
+
+<h2>Using onclick</h2>
+<pre><code>&lt;button onclick="sayHello()"&gt;Click Me&lt;/button&gt;
+
+&lt;script&gt;
+  function sayHello() {
+    alert("Hello!");
+  }
+&lt;/script&gt;</code></pre>
+
+<h2>Using addEventListener</h2>
+<p>This is a more modern and flexible method.</p>
+<p><strong>HTML</strong></p>
+<pre><code>&lt;button id="myButton"&gt;Click Me&lt;/button&gt;</code></pre>
+<p><strong>JavaScript</strong></p>
+<pre><code>let button = document.getElementById("myButton");
+
+button.addEventListener("click", function() {
+  alert("The button was clicked.");
+});</code></pre>
+
+<h1>14. Complete Simple JavaScript Example</h1>
+<p>This example checks whether a number is positive, negative, or zero.</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Number Checker&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1&gt;Number Checker&lt;/h1&gt;
+
+  &lt;input id="numberInput" type="number"&gt;
+  &lt;button id="checkButton"&gt;Check Number&lt;/button&gt;
+
+  &lt;p id="result"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    let input = document.getElementById("numberInput");
+    let button = document.getElementById("checkButton");
+    let result = document.getElementById("result");
+
+    button.addEventListener("click", function() {
+      let number = Number(input.value);
+
+      if (number &gt; 0) {
+        result.textContent = "The number is positive.";
+      } else if (number &lt; 0) {
+        result.textContent = "The number is negative.";
+      } else {
+        result.textContent = "The number is zero.";
+      }
+    });
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<h2>How This Program Works</h2>
+<ul>
+    <li>The user enters a number.</li>
+    <li>The button is clicked.</li>
+    <li>JavaScript reads the input.</li>
+    <li><strong>Number()</strong> converts the input into a number.</li>
+    <li>The <strong>if...else if...else</strong> structure checks the number.</li>
+    <li>The result is displayed on the page.</li>
+</ul>
+
+<h1>15. Another Example: Simple Calculator</h1>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Simple Calculator&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;input id="firstNumber" type="number" placeholder="First number"&gt;
+  &lt;input id="secondNumber" type="number" placeholder="Second number"&gt;
+
+  &lt;button id="addButton"&gt;Add&lt;/button&gt;
+
+  &lt;p id="answer"&gt;&lt;/p>
+
+  &lt;script&gt;
+    let firstNumber = document.getElementById("firstNumber");
+    let secondNumber = document.getElementById("secondNumber");
+    let addButton = document.getElementById("addButton");
+    let answer = document.getElementById("answer");
+
+    addButton.addEventListener("click", function() {
+      let number1 = Number(firstNumber.value);
+      let number2 = Number(secondNumber.value);
+
+      let total = number1 + number2;
+
+      answer.textContent = "Answer: " + total;
+    });
+  &lt;/script>
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h1>16. Common JavaScript Errors</h1>
+
+<h2>Missing Quotation Marks</h2>
+<p>Incorrect:</p>
+<pre><code>let name = Ali;</code></pre>
+<p>Correct:</p>
+<pre><code>let name = "Ali";</code></pre>
+
+<h2>Using an Undeclared Variable</h2>
+<p>Incorrect:</p>
+<pre><code>console.log(username);</code></pre>
+<p>If username was never created, JavaScript will show an error.</p>
+<p>Correct:</p>
+<pre><code>let username = "Ali";
+console.log(username);</code></pre>
+
+<h2>Incorrect Capitalization</h2>
+<p>Incorrect:</p>
+<pre><code>Console.log("Hello");</code></pre>
+<p>Correct:</p>
+<pre><code>console.log("Hello");</code></pre>
+<p>JavaScript is case-sensitive.</p>
+
+<h2>Forgetting to Increase a Loop Counter</h2>
+<p>Incorrect:</p>
+<pre><code>let i = 1;
+
+while (i &lt;= 5) {
+  console.log(i);
+}</code></pre>
+<p>Correct:</p>
+<pre><code>let i = 1;
+
+while (i &lt;= 5) {
+  console.log(i);
+  i++;
+}</code></pre>
+
+<h2>Using = Instead of ===</h2>
+<p>The <strong>=</strong> operator assigns a value.</p>
+<pre><code>let age = 18;</code></pre>
+<p>The <strong>===</strong> operator compares values.</p>
+<pre><code>if (age === 18) {
+  console.log("Correct age");
+}</code></pre>
+
+<h1>17. Small Practice Exercises</h1>
+
+<h2>Exercise 1: Greeting</h2>
+<p>Create a variable called name and display a greeting.</p>
+<pre><code>let name = "Maria";
+console.log("Hello, " + name);</code></pre>
+
+<h2>Exercise 2: Even or Odd</h2>
+<pre><code>let number = 12;
+
+if (number % 2 === 0) {
+  console.log("Even");
+} else {
+  console.log("Odd");
+}</code></pre>
+
+<h2>Exercise 3: Counting</h2>
+<p>Use a loop to display numbers from 1 to 10.</p>
+<pre><code>for (let i = 1; i &lt;= 10; i++) {
+  console.log(i);
+}</code></pre>
+
+<h2>Exercise 4: Add Two Numbers</h2>
+<pre><code>function add(a, b) {
+  return a + b;
+}
+
+console.log(add(10, 20));</code></pre>
+
+<h2>Exercise 5: Find the Largest Number</h2>
+<pre><code>let a = 15;
+let b = 20;
+
+if (a &gt; b) {
+  console.log(a + " is larger.");
+} else {
+  console.log(b + " is larger.");
+}</code></pre>
